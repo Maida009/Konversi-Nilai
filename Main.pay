@@ -1,0 +1,64 @@
+def bin_to_decimal(binary):
+    decimal = 0
+    power = 0
+    for digit in binary[::-1]:
+        decimal += int(digit) * (2 ** power)
+        power += 1
+    return decimal
+
+def decimal_to_bin(decimal):
+    binary = ''
+    while decimal > 0:
+        binary = str(decimal % 2) + binary
+        decimal //= 2
+    return binary
+
+def oct_to_decimal(octal):
+    decimal = 0
+    power = 0
+    for digit in octal[::-1]:
+        decimal += int(digit) * (8 ** power)
+        power += 1
+    return decimal
+
+def decimal_to_oct(decimal):
+    octal = ''
+    while decimal > 0:
+        octal = str(decimal % 8) + octal
+        decimal //= 8
+    return octal
+
+def hex_to_decimal(hexadecimal):
+    decimal = 0
+    power = 0
+    for digit in hexadecimal[::-1]:
+        if digit.isdigit():
+            decimal += int(digit) * (16 ** power)
+        else:
+            decimal += (ord(digit.upper()) - 55) * (16 ** power)
+        power += 1
+    return decimal
+
+def decimal_to_hex(decimal):
+    hexadecimal = ''
+    while decimal > 0:
+        remainder = decimal % 16
+        if remainder < 10:
+            hexadecimal = str(remainder) + hexadecimal
+        else:
+            hexadecimal = chr(remainder + 55) + hexadecimal
+        decimal //= 16
+    return hexadecimal
+
+# Contoh penggunaan
+binary = '101010'
+octal = '52'
+decimal = 42
+hexadecimal = '2A'
+
+print("Biner ke Desimal:", bin_to_decimal(binary))
+print("Desimal ke Biner:", decimal_to_bin(decimal))
+print("Oktal ke Desimal:", oct_to_decimal(octal))
+print("Desimal ke Oktal:", decimal_to_oct(decimal))
+print("Heksadesimal ke Desimal:", hex_to_decimal(hexadecimal))
+print("Desimal ke Heksadesimal:", decimal_to_hex(decimal))
